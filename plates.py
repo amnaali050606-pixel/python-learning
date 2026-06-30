@@ -1,17 +1,35 @@
 def main():
-    vanity_plate = input(" enter vanity plate code: ")
-    if is_valid(vanity_plate) == True :
-        print("valid")
+    plate = input("Plate: ")
+
+    if is_valid(plate):
+        print("Valid")
     else:
-        print("invalid")
-def is_valid(vanity_plate):
-    number_start = True 
-    for i in vanity_plate:
-      if 2 <= len(vanity_plate) <= 6 
-      and if vanity_plate[0].isalpha() and vanity_plate[1].isalpha()
-      and if i.isalpha():
-          number_start = False
-    else:
-        return True
-    return True   
+        print("Invalid")
+
+
+def is_valid(s):
+    if not 2 <= len(s) <= 6:
+        return False
+
+    if not s[0].isalpha() or not s[1].isalpha():
+        return False
+
+    if not s.isalnum():
+        return False
+
+    number_started = False
+
+    for char in s:
+        if char.isdigit():
+            if not number_started:
+                if char == "0":
+                    return False
+                number_started = True
+        else:
+            if number_started:
+                return False
+
+    return True
+
+
 main()
